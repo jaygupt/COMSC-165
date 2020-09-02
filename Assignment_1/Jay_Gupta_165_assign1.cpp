@@ -29,6 +29,36 @@ int main() {
     if (runnerOneTime < 0 || runnerTwoTime < 0 || runnerThreeTime < 0) {
         cout << "Enter positive values only for each runner's time."; 
         return -1; 
+    } else {
+        // none of the inputs were negative 
+        
+        string firstPerson; 
+        string secondPerson; 
+        string thirdPerson; 
+
+        // determine who came first: only 6 possible scenarios
+        /*
+        1. A, B, C
+        2. A, C, B
+        3. B, A, C
+        4. B, C, A
+        5. C, A, B
+        6. C, B, A
+        */
+
+        if (runnerOneTime < runnerTwoTime && runnerTwoTime < runnerThreeTime) {
+            firstPerson = runnerOneName; 
+            secondPerson = runnerTwoName; 
+            thirdPerson = runnerThreeName; 
+        } else if (runnerOneTime < runnerThreeTime && runnerThreeTime < runnerTwoTime) {
+            firstPerson = runnerOneName; 
+            secondPerson = runnerThreeName; 
+            thirdPerson = runnerTwoName; 
+        }
+
+        cout << firstPerson << " came in 1st place." << endl; 
+        cout << secondPerson << " came in 2nd place." << endl;
+        cout << thirdPerson << " came in 3rd place." << endl;
     }
 
     return 0; 
