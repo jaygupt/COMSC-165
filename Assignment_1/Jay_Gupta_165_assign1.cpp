@@ -24,60 +24,53 @@ int main() {
     // Get Runner 3's name and time 
     string runnerThreeName = promptName(3); 
     double runnerThreeTime = promptTime(3); 
+    
+    // compare who came first, second, or third
+    string firstPerson; 
+    string secondPerson; 
+    string thirdPerson; 
 
-    // error checking; are any of the times less than 0? 
-    if (runnerOneTime < 0 || runnerTwoTime < 0 || runnerThreeTime < 0) {
-        cout << "Enter positive values only for each runner's time."; 
-        return -1; 
+    // determine who came first, second, and third: only 6 possible scenarios
+    /*
+    1. A, B, C
+    2. A, C, B
+    3. B, A, C
+    4. B, C, A
+    5. C, A, B
+    6. C, B, A
+    */
+
+    if (runnerOneTime < runnerTwoTime && runnerTwoTime < runnerThreeTime) {
+        firstPerson = runnerOneName; 
+        secondPerson = runnerTwoName; 
+        thirdPerson = runnerThreeName; 
+    } else if (runnerOneTime < runnerThreeTime && runnerThreeTime < runnerTwoTime) {
+        firstPerson = runnerOneName; 
+        secondPerson = runnerThreeName; 
+        thirdPerson = runnerTwoName; 
+    } else if (runnerTwoTime < runnerOneTime && runnerOneTime < runnerThreeTime) {
+        firstPerson = runnerTwoName; 
+        secondPerson = runnerOneName; 
+        thirdPerson = runnerThreeName; 
+    } else if (runnerTwoTime < runnerThreeTime && runnerThreeTime < runnerOneTime) {
+        firstPerson = runnerTwoName; 
+        secondPerson = runnerThreeName; 
+        thirdPerson = runnerOneName; 
+    } else if (runnerThreeTime < runnerOneTime && runnerOneTime < runnerTwoTime) {
+        firstPerson = runnerThreeName; 
+        secondPerson = runnerOneName; 
+        thirdPerson = runnerTwoName; 
+    } else if (runnerThreeTime < runnerTwoTime && runnerTwoTime < runnerOneTime) {
+        firstPerson = runnerThreeName; 
+        secondPerson = runnerTwoName; 
+        thirdPerson = runnerOneName; 
     } else {
-        // none of the inputs were negative 
-
-        string firstPerson; 
-        string secondPerson; 
-        string thirdPerson; 
-
-        // determine who came first, second, and third: only 6 possible scenarios
-        /*
-        1. A, B, C
-        2. A, C, B
-        3. B, A, C
-        4. B, C, A
-        5. C, A, B
-        6. C, B, A
-        */
-
-        if (runnerOneTime < runnerTwoTime && runnerTwoTime < runnerThreeTime) {
-            firstPerson = runnerOneName; 
-            secondPerson = runnerTwoName; 
-            thirdPerson = runnerThreeName; 
-        } else if (runnerOneTime < runnerThreeTime && runnerThreeTime < runnerTwoTime) {
-            firstPerson = runnerOneName; 
-            secondPerson = runnerThreeName; 
-            thirdPerson = runnerTwoName; 
-        } else if (runnerTwoTime < runnerOneTime && runnerOneTime < runnerThreeTime) {
-            firstPerson = runnerTwoName; 
-            secondPerson = runnerOneName; 
-            thirdPerson = runnerThreeName; 
-        } else if (runnerTwoTime < runnerThreeTime && runnerThreeTime < runnerOneTime) {
-            firstPerson = runnerTwoName; 
-            secondPerson = runnerThreeName; 
-            thirdPerson = runnerOneName; 
-        } else if (runnerThreeTime < runnerOneTime && runnerOneTime < runnerTwoTime) {
-            firstPerson = runnerThreeName; 
-            secondPerson = runnerOneName; 
-            thirdPerson = runnerTwoName; 
-        } else if (runnerThreeTime < runnerTwoTime && runnerTwoTime < runnerOneTime) {
-            firstPerson = runnerThreeName; 
-            secondPerson = runnerTwoName; 
-            thirdPerson = runnerOneName; 
-        } else {
-            cout << "Error. You may have made two or more values equal to each other." << endl; 
-        }
-
-        cout << firstPerson << " came in 1st place." << endl; 
-        cout << secondPerson << " came in 2nd place." << endl;
-        cout << thirdPerson << " came in 3rd place." << endl;
+        cout << "Error. You may have made two or more values equal to each other." << endl; 
     }
+
+    cout << firstPerson << " came in 1st place." << endl; 
+    cout << secondPerson << " came in 2nd place." << endl;
+    cout << thirdPerson << " came in 3rd place." << endl;
 
     return 0; 
 }
@@ -94,9 +87,10 @@ double promptTime(int runnerNum) {
     do {
         cout << "Runner " << runnerNum << "'s finishing time: "; 
         cin >> runnerTime;
+        if (runnerTime < 0) {
+            cout << "Enter positive values only for each runner's time." << endl;
+        }
     } while (runnerTime < 0); 
-    // cout << "Runner " << runnerNum << "'s finishing time: "; 
-    // cin >> runnerTime;  
     cin.ignore(256, '\n');
     return runnerTime; 
 }
