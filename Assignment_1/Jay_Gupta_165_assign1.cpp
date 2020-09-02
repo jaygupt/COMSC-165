@@ -66,7 +66,7 @@ int main() {
             firstPerson = runnerThreeName; 
             secondPerson = runnerOneName; 
             thirdPerson = runnerTwoName; 
-        } else if (runnerThreeTime < runnerOneTime && runnerOneTime < runnerTwoTime) {
+        } else if (runnerThreeTime < runnerTwoTime && runnerTwoTime < runnerOneTime) {
             firstPerson = runnerThreeName; 
             secondPerson = runnerTwoName; 
             thirdPerson = runnerOneName; 
