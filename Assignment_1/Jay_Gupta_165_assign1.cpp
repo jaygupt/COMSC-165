@@ -25,6 +25,12 @@ int main() {
     string runnerThreeName = promptName(3); 
     double runnerThreeTime = promptTime(3); 
 
+    // error checking; are any of the times less than 0? 
+    if (runnerOneTime < 0 || runnerTwoTime < 0 || runnerThreeTime < 0) {
+        cout << "Enter positive values only for each runner's time."; 
+        return -1; 
+    }
+
     return 0; 
 }
 
