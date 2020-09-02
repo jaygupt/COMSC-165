@@ -31,12 +31,12 @@ int main() {
         return -1; 
     } else {
         // none of the inputs were negative 
-        
+
         string firstPerson; 
         string secondPerson; 
         string thirdPerson; 
 
-        // determine who came first: only 6 possible scenarios
+        // determine who came first, second, and third: only 6 possible scenarios
         /*
         1. A, B, C
         2. A, C, B
@@ -54,6 +54,24 @@ int main() {
             firstPerson = runnerOneName; 
             secondPerson = runnerThreeName; 
             thirdPerson = runnerTwoName; 
+        } else if (runnerTwoTime < runnerOneTime && runnerOneTime < runnerThreeTime) {
+            firstPerson = runnerTwoName; 
+            secondPerson = runnerOneName; 
+            thirdPerson = runnerThreeName; 
+        } else if (runnerTwoTime < runnerThreeTime && runnerThreeTime < runnerOneTime) {
+            firstPerson = runnerTwoName; 
+            secondPerson = runnerThreeName; 
+            thirdPerson = runnerOneName; 
+        } else if (runnerThreeTime < runnerOneTime && runnerOneTime < runnerTwoTime) {
+            firstPerson = runnerThreeName; 
+            secondPerson = runnerOneName; 
+            thirdPerson = runnerTwoName; 
+        } else if (runnerThreeTime < runnerOneTime && runnerOneTime < runnerTwoTime) {
+            firstPerson = runnerThreeName; 
+            secondPerson = runnerTwoName; 
+            thirdPerson = runnerOneName; 
+        } else {
+            cout << "Error. You may have made two or more values equal to each other." << endl; 
         }
 
         cout << firstPerson << " came in 1st place." << endl; 
