@@ -91,8 +91,12 @@ string promptName(int runnerNum) {
 
 double promptTime(int runnerNum) {
     double runnerTime; 
-    cout << "Runner " << runnerNum << "'s finishing time: "; 
-    cin >> runnerTime;  
+    do {
+        cout << "Runner " << runnerNum << "'s finishing time: "; 
+        cin >> runnerTime;
+    } while (runnerTime < 0); 
+    // cout << "Runner " << runnerNum << "'s finishing time: "; 
+    // cin >> runnerTime;  
     cin.ignore(256, '\n');
     return runnerTime; 
 }
