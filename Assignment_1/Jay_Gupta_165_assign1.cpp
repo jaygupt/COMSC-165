@@ -9,8 +9,8 @@ double promptTime(int runnerNum);
 
 int main() {
     // 2. Introductory statement to user, telling them what the program will be about.
-    cout << "Enter the names of three runners and their " << 
-    "finishing times. I will tell you who came in first, " <<
+    cout << endl << "Enter the names of three runners and their " << 
+    "finishing times." << endl << "I will tell you who came in first, " <<
     "second, and third." << endl; 
 
     // Get Runner 1's name and time 
@@ -68,16 +68,16 @@ int main() {
         cout << "Error. You may have made two or more values equal to each other." << endl; 
     }
 
-    cout << firstPerson << " came in 1st place." << endl; 
+    cout << endl << firstPerson << " came in 1st place." << endl; 
     cout << secondPerson << " came in 2nd place." << endl;
-    cout << thirdPerson << " came in 3rd place." << endl;
+    cout << thirdPerson << " came in 3rd place." << endl << endl;
 
     return 0; 
 }
 
 string promptName(int runnerNum) { 
     char runnerName[50]; 
-    cout << "Name of Runner " << runnerNum << ": "; 
+    cout << endl << "Name of Runner " << runnerNum << ": "; 
     cin.getline(runnerName, 50); 
     return runnerName; 
 }
@@ -88,7 +88,7 @@ double promptTime(int runnerNum) {
         cout << "Runner " << runnerNum << "'s finishing time: "; 
         cin >> runnerTime;
         if (runnerTime < 0) {
-            cout << "Enter positive values only for each runner's time." << endl;
+            cout << endl << "Enter positive values only for each runner's time." << endl << endl;
         }
     } while (runnerTime < 0); 
     cin.ignore(256, '\n');
