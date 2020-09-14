@@ -15,7 +15,18 @@ void displayChoice(int);
 
 int main()
 {
-	getUserChoice(); 
+	// set seed for rand() using time  
+	// rand() should only be seeded once, which
+	// is why it is being done here, at the 
+	// start of the program
+	srand(time(0)); 
+
+	cout << getComputerChoice(); 
+
+	// My Tests:
+	// int userChoice = getUserChoice();
+	// displayChoice(1); 
+
 	// int userChoice;		
 	// int computerChoice;	
 
@@ -43,10 +54,14 @@ int main()
 	return 0;
 }
 
-
+// no input parameters 
+// returns the computer's choice (1, 2, or 3)
 int getComputerChoice()
 {
-  return 1; 
+	// generate a random number from 1-3
+	int computerChoice = 1 + (rand() % 3); 
+	
+	return computerChoice; 
 }
 
 // no input parameters
@@ -83,8 +98,17 @@ void determineOutcome(int user, int computer)
 	
 }
 
-
+// input: user's or computer's choice (1, 2, or 3)
+// output: displays using 'cout' rock, paper, or scissors 
+// depending on the number given
 void displayChoice(int choice)
 {
-  
+	if (choice == 1) {
+		cout << "Rock"; 
+	} else if (choice == 2) {
+		cout << "Paper"; 
+	} else {
+		// choice has to be 3
+		cout << "Scissors"; 
+	}
 }
