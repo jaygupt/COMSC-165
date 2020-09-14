@@ -21,7 +21,7 @@ int main()
 	// start of the program
 	srand(time(0)); 
 
-	cout << getComputerChoice(); 
+	determineOutcome(1, 2);
 
 	// My Tests:
 	// int userChoice = getUserChoice();
@@ -92,10 +92,37 @@ int getUserChoice()
 	return userChoice; 
 }
 
-
+// input: user's choice (1, 2, or 3) and computer's choice (1, 2, or 3)
+// output: displays using 'cout' who the winner is, or if there was a tie
 void determineOutcome(int user, int computer)
 {
-	
+	// ways to win
+	// rock beats scissors (1 vs. 3)
+	// scissors beats paper (3 vs. 2)
+	// paper beats rock (2 vs. 1)
+
+	// tie 
+	if (user == computer) {
+		cout << "Tie. No winner."; 
+	} else if (user == 1 && computer == 3) {
+		// user selects rock, computer selects scissors 
+		cout << "YOU win! Rock smashes scissors."; 
+	} else if (computer == 1 && user == 3) {
+		// same as above but user and computer are reversed
+		cout << "Computer wins! Rock smashes scissors."; 
+	} else if (user == 3 && computer == 2) {
+		// user selects scissors, computer selects paper 
+		cout << "YOU win! Scissors cuts paper."; 
+	} else if (computer == 3 && user == 2) {
+		// same as above but user and computer are reversed
+		cout << "Computer wins! Scissors cuts paper."; 
+	} else if (user == 2 && computer == 1) {
+		// user selects paper, computer selects rock 
+		cout << "YOU win! Paper wraps rock."; 
+	} else {
+		// same as above but user and computer are reversed
+		cout << "Computer wins! Paper wraps rock.";  
+	}
 }
 
 // input: user's or computer's choice (1, 2, or 3)
