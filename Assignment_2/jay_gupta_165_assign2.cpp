@@ -13,9 +13,6 @@ int getComputerChoice();
 void determineOutcome(int, int);
 void displayChoice(int);
 
-// TODO: Number Comments 
-// TODO: 5 Screenshots of sample runs 
-
 int main()
 {
 	// 1. set seed for rand() using time  
