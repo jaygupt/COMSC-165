@@ -31,8 +31,10 @@ void getJudgeData(double &score) {
 	cout << "Enter a judge's score: ";
 	cin >> score;
 
-	if (score < lowerBound || score > upperBound) {
-		cout << "The score must be from " << lowerBound << " to " << upperBound << ".";
+	while (score < lowerBound || score > upperBound) {
+		cout << "The score must be between " << lowerBound << " to " << upperBound << "." << endl;
+		cout << "Enter a judge's score: ";
+		cin >> score;
 	}
 }
 
