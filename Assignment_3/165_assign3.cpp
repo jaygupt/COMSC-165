@@ -7,6 +7,9 @@ void calcScore(double, double, double, double, double);
 double findLowest(double, double, double, double, double);
 double findHighest(double, double, double, double, double);
 
+const int lowerBound = 0.0;
+const int upperBound = 10.0;
+
 int main()
 {
 	double score1;
@@ -25,7 +28,12 @@ int main()
 }
 
 void getJudgeData(double &score) {
+	cout << "Enter a judge's score: ";
+	cin >> score;
 
+	if (score < lowerBound || score > upperBound) {
+		cout << "The score must be from " << lowerBound << " to " << upperBound << ".";
+	}
 }
 
 void calcScore(double, double, double, double, double) {
