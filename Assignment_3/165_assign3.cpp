@@ -43,7 +43,13 @@ void getJudgeData(double &score) {
 }
 
 void calcScore(double score1, double score2, double score3, double score4, double score5) {
+	double lowest = findLowest(double score1, double score2, double score3, double score4, double score5);
+ 	double highest = findHighest(double score1, double score2, double score3, double score4, double score5);
 
+	double totalOfRemainingThree = (score1 + score2 + score3 + score4 + score5) - (highest + lowest);
+	double averageOfRemainingThree = totalOfRemainingThree / 3.0;
+
+	return averageOfRemainingThree; 
 }
 
 double findLowest(double score1, double score2, double score3, double score4, double score5) {
