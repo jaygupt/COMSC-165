@@ -18,6 +18,9 @@ int main()
 	double score4;
 	double score5;
 
+	// new line before program starts
+	cout << endl; 
+
 	getJudgeData(score1);
 	getJudgeData(score2);
 	getJudgeData(score3);
@@ -27,7 +30,7 @@ int main()
 	calcScore(score1, score2, score3, score4, score5);
 
 	system("PAUSE");
-  return 0;
+  	return 0;
 }
 
 void getJudgeData(double &score) {
@@ -45,7 +48,7 @@ void calcScore(double score1, double score2, double score3, double score4, doubl
 	double lowest = findLowest(score1, score2, score3, score4, score5);
  	double highest = findHighest(score1, score2, score3, score4, score5);
 
-	double totalOfRemainingThree = (score1 + score2 + score3 + score4 + score5) - (highest + lowest);
+	double totalOfRemainingThree = (score1 + score2 + score3 + score4 + score5) - (lowest + highest);
 	double averageOfRemainingThree = totalOfRemainingThree / 3.0;
 
 	cout << endl << "After dropping the lowest and highest scores, the average score was: "
