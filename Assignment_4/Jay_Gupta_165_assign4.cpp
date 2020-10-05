@@ -10,11 +10,13 @@ void displayResults(const char studentAnswers[], const char answerKey[],
     int answerKeySize, int incorrectAnswers[]); 
 
 int main() {
-    // TODO: For now, set at 5. Need to change to 20 later.
-    const int answerKeySize = 5;
+    // 1. Set the size of every array used in this program; all are dependent on the 
+    // answer key array 
+    const int answerKeySize = 20;
 
-    // TODO: For now, set at 5 answers. Need to fill in rest
-    char answerKey[answerKeySize] = {'A', 'D', 'B', 'B', 'C'}; 
+    // initialize arrays 
+    char answerKey[answerKeySize] = {'A', 'D', 'B', 'B', 'C', 'B', 'A', 
+    'B', 'C', 'D', 'A', 'C', 'D', 'B', 'D', 'C', 'C', 'A', 'D', 'B'}; 
     char studentAnswers[answerKeySize] = {}; 
     int incorrectAnswers[answerKeySize] = {}; 
 
@@ -47,6 +49,8 @@ void getUserInput(char arr[], int arraySize) {
         }
         arr[i] = userInput;  
     }
+
+    cout << endl; 
 }
 
 void displayResults(const char studentAnswers[], const char answerKey[], 
@@ -68,11 +72,18 @@ void displayResults(const char studentAnswers[], const char answerKey[],
 
     int incorrect = answerKeySize - correct; 
 
-    cout << "Correct Answers: " << correct << endl; 
+    if (correct >= 15) {
+        cout << "The student passed the exam." << endl; 
+    } else {
+        cout << "The student failed the exam." << endl; 
+    }
+
+    cout << endl << "Correct Answers: " << correct << endl; 
     cout << "Incorrect Answers: " << incorrect << endl << endl; 
     
     cout << "Questions that were answered incorrectly:" << endl; 
     displayIncorrectAnswers(incorrectAnswers, answerKeySize);
+    cout << "----------------------------" << endl; 
 }
 
 void displayIncorrectAnswers(const int arr[], int arraySize) {
