@@ -29,22 +29,19 @@ int main()
 	cout << "The average value of an element is "
 		 << getAverage(testArray, ROWS)
 		 << endl;
-	*/
 
 	cout << "The total of row 0 is "
 		 << getRowTotal(testArray, 0)
 		 << endl;
 
-	/*
 	cout << "The total of col 2 is "
 		 << getColumnTotal(testArray, 2, ROWS)
 		 << endl;
-
-     
+	*/
 	cout << "The highest value in row 2 is "
 		 << getHighestInRow(testArray, 2)
 		 << endl;
-		
+	/*
 	cout << "The lowest value in row 2 is "
 		 << getLowestInRow(testArray, 2)
 		 << endl;
@@ -99,19 +96,36 @@ double getAverage(int array[][COLS], int rows)
 
 int getRowTotal(int array[][COLS], int rowToTotal)
 {
+	// loop for columns; have a total variable, and loop through the 
+	// values in the first row 
 
+	int total = 0; 
+
+	for (int j = 0; j < COLS; j++) {
+		total += array[rowToTotal][j]; 
+	}
+
+	return total; 
 }
 
 
 int getColumnTotal(int array[][COLS], int colToTotal, int rows)
 {
+	// loop through the rows, and keep adding to total 
+	int total = 0; 
 	
+	for (int i = 0; i < rows; i++) {
+		total += array[i][colToTotal]; 
+	}
+
+	return total; 
 }
 
 
 int getHighestInRow(int array[][COLS], int rowToSearch)
 {
-     
+    // have a variable for highest 
+
 }
 
 
