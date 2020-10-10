@@ -19,10 +19,10 @@ int main() {
 	
 	// 2. This is the 2-D array that will be used throughout the program. 
 	int testArray[ROWS][COLS] =
-					{ { 1,   2,  3,  4,  5 },
-					{   6,   7,  8,  9, 10 },
-					{  11,  12, 13, 14, 15 },
-					{  16,  17, 18, 19, 20 } };
+					{ { 1,   5,  10,  13,  90},
+					{  10,  6,  10,  12, 6 },
+					{  11,  6, 9, 18, 9 },
+					{  20,  34, 8, 12, 6 } };
 	
 	cout << "The total of the array elements is "
 		 << getTotal(testArray, ROWS)
@@ -32,23 +32,22 @@ int main() {
 		 << getAverage(testArray, ROWS)
 		 << endl;
 
-	cout << "The total of row 0 is "
-		 << getRowTotal(testArray, 0)
+	cout << "The total of row 2 is "
+		 << getRowTotal(testArray, 2)
 		 << endl;
 
-	cout << "The total of col 2 is "
-		 << getColumnTotal(testArray, 2, ROWS)
+	cout << "The total of col 4 is "
+		 << getColumnTotal(testArray, 4, ROWS)
 		 << endl;
 
-	cout << "The highest value in row 2 is "
-		 << getHighestInRow(testArray, 2)
+	cout << "The highest value in row 3 is "
+		 << getHighestInRow(testArray, 3)
 		 << endl;
 
 	cout << "The lowest value in row 2 is "
 		 << getLowestInRow(testArray, 2)
 		 << endl;
-        
-    system("PAUSE");
+
 	return 0;
 }
 
@@ -70,7 +69,7 @@ int getTotal(const int array[][COLS], int rows) {
 }
 
 
-double getAverage(int array[][COLS], int rows) {
+double getAverage(const int array[][COLS], int rows) {
 	// 4. To find the average, this function first totals 
 	// all of the values, and then, multiplies the number of columns 
 	// by the number of rows to get the total number of elements. 
@@ -94,7 +93,7 @@ double getAverage(int array[][COLS], int rows) {
 }
 
 
-int getRowTotal(int array[][COLS], int rowToTotal) {
+int getRowTotal(const int array[][COLS], int rowToTotal) {
 	// 6. To find the row total, first declare a 'total' variable; 
 	// then, loop through the columns to get the values in that row,
 	// adding them to the total variable.  
@@ -109,7 +108,7 @@ int getRowTotal(int array[][COLS], int rowToTotal) {
 }
 
 
-int getColumnTotal(int array[][COLS], int colToTotal, int rows) {
+int getColumnTotal(const int array[][COLS], int colToTotal, int rows) {
 	// 7. To find the column total, first, have a total variable, and 
 	// loop through the rows, adding the current value to the total. 
 	int total = 0; 
@@ -122,7 +121,7 @@ int getColumnTotal(int array[][COLS], int colToTotal, int rows) {
 }
 
 
-int getHighestInRow(int array[][COLS], int rowToSearch) {
+int getHighestInRow(const int array[][COLS], int rowToSearch) {
     // 8. First, have a variable for highest 
 	// Then, loop through the row using a different col value to find highest; 
 	// if the current number is greater than highest, set highest to this new value. 
@@ -142,7 +141,7 @@ int getHighestInRow(int array[][COLS], int rowToSearch) {
 }
 
 
-int getLowestInRow(int array[][COLS], int rowToSearch) {
+int getLowestInRow(const int array[][COLS], int rowToSearch) {
 	// 10. This is the same functionality as above, but for lower. This means that 
 	// if the current value is less than lowest, set lowest to this value. 
 	int lowest = array[rowToSearch][0]; 
