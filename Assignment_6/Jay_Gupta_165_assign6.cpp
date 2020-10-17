@@ -67,15 +67,15 @@ void showArray(int values[][COLS]) {
    }
 }
 
-// accepts a two-dimenstional int array as an argument
+// 1. accepts a two-dimenstional int array as an argument
 bool isMagicSquare(int values[][COLS]) {   
-   // returns true if array meets all 
+   // 2. returns true if array meets all 
    // requirements of a magic square
    // else, returns false 
 
    if (checkRange(values) && checkUnique(values) && checkRowSum(values)
    && checkColSum(values) && checkDiagSum(values)) {
-      // if the array passes all of the tests
+      // 3. if the array passes all of the tests
       
       return true; 
    } else {
@@ -83,12 +83,12 @@ bool isMagicSquare(int values[][COLS]) {
    }
 }
 
-// accepts a two-dimenstional int array as an argument
+// 4. accepts a two-dimenstional int array as an argument
 bool checkRange(int values[][COLS]) {
-   // returns true if values are within specified range (1 - 9)
+   // 5. returns true if values are within specified range (1 - 9)
    // otherwise, returns false 
 
-   // loop through array; if a value is less than min, 
+   // 6. loop through array; if a value is less than min, 
    // or greater than max, return false 
    // at the end, return true 
 
@@ -97,7 +97,7 @@ bool checkRange(int values[][COLS]) {
       // loop through columns
       for (int j = 0; j < COLS; j++) {
          if (values[i][j] < MIN || values[i][j] > MAX) {
-            // the array value is not in the range of 1 - 9
+            // 7. the array value is not in the range of 1 - 9
             return false; 
          }
       }
@@ -109,10 +109,10 @@ bool checkRange(int values[][COLS]) {
 
 // accepts a two-dimensional int array as an argument
 bool checkUnique(int values[][COLS]) {
-   // if the values in the array are unique, returns true
+   // 8. if the values in the array are unique, returns true
    // else, returns false (this means there are duplicates)
 
-   // naive solution: 
+   // 9. naive solution: 
    // have a single dimensional array of "used elements"
    // while going through the 2D array, check if the value in 
    // question is already in the used array. If it is, then 
@@ -121,7 +121,6 @@ bool checkUnique(int values[][COLS]) {
    // at the end, return true, as the whole array in question
    // has unique values 
 
-   // TODO: Add why this is a vector 
    vector<int> usedElements; 
 
    // loop through array's rows
@@ -130,7 +129,7 @@ bool checkUnique(int values[][COLS]) {
       for (int j = 0; j < COLS; j++) {
          int valueInQuestion = values[i][j]; 
 
-         // valueInArray function will check if valueInQuestion is 
+         // 10. valueInArray function will check if valueInQuestion is 
          // in usedElements. If it is, that means the value is a 
          // duplicate. 
 
@@ -141,7 +140,7 @@ bool checkUnique(int values[][COLS]) {
             // valueInQuestion is a duplicate 
             return false; 
          } else {
-            // new value; add this value to usedElements
+            // 11. new value; add this value to usedElements
             usedElements.push_back(valueInQuestion); 
          }
       }
@@ -153,10 +152,10 @@ bool checkUnique(int values[][COLS]) {
 
 // accepts two-dimensional int array
 bool checkRowSum(int values[][COLS]) {
-   // returns true if sum of values in each array's 
+   // 12. returns true if sum of values in each array's 
    // rows are equal; otherwise, returns false 
 
-   // find sum of first row, second row, and third row
+   // 13. find sum of first row, second row, and third row
    // if the sums aren't equal, return false
    // else, return true 
 
@@ -170,7 +169,7 @@ bool checkRowSum(int values[][COLS]) {
    }
 
    if (sums[0] == sums[1] && sums[1] == sums[2]) {
-      // if all three row sums are equal to each other
+      // 14. if all three row sums are equal to each other
       return true;  
    } else {
       // all three row sums aren't equal to each other 
@@ -180,10 +179,10 @@ bool checkRowSum(int values[][COLS]) {
 
 // accepts two-dimensional int array
 bool checkColSum(int values[][COLS]) {
-   // returns true if sum of values in each array's 
+   // 15. returns true if sum of values in each array's 
    // columns are equal; otherwise, returns false 
    
-   // find sum of first column, second column, and third column
+   // 16. find sum of first column, second column, and third column
    // if the sums aren't equal, return false
    // else, return true 
 
@@ -197,7 +196,7 @@ bool checkColSum(int values[][COLS]) {
    }
 
    if (sums[0] == sums[1] && sums[1] == sums[2]) {
-      // if all three column sums are equal to each other
+      // 17. if all three column sums are equal to each other
       return true;  
    } else {
       // all three column sums aren't equal to each other 
@@ -207,7 +206,7 @@ bool checkColSum(int values[][COLS]) {
 
 // accepts two-dimensional int array
 bool checkDiagSum(int values[][COLS]) {
-   // calculate first diagonal sum, then second
+   // 18. calculate first diagonal sum, then second
    // if they are equal, return true
    // else, return false
 
@@ -227,13 +226,13 @@ bool checkDiagSum(int values[][COLS]) {
 // accepts three parameters: value to look for, the array
 // that is being searched in, and the size of the array
 bool valueInVector(int valueInQuestion, vector<int> theVector, int vectorSize) {
-   // purpose: finds whether or not the valueInQuestion is in theArray
+   // 19. purpose: finds whether or not the valueInQuestion is in theArray
    // else, returns false 
    // if the value occurs in theArray, returns true
 
    // loop through the array 
    for (int i = 0; i < vectorSize; i++) {
-      // if the current value is equal to the valueInQuestion, 
+      // 20. if the current value is equal to the valueInQuestion, 
       // return true, as the valueInQuestion is present in the array 
       if (theVector[i] == valueInQuestion) {
          return true; 
