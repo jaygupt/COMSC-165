@@ -18,7 +18,7 @@ bool checkColSum(int[][COLS]);
 bool checkDiagSum(int[][COLS]);
 
 // custom function prototypes 
-bool valueInArray(int valueInQuestion, int theArray[]); 
+bool valueInArray(int valueInQuestion, int theArray[], int arraySize); 
 
 int main() {
    int magicArray[ROWS][COLS] = { {4, 9, 2},
@@ -38,7 +38,20 @@ int main() {
    // showResult(normalArray);
  
    // showArray(magicArray);
-   // showResult(magicArray);
+   // showResult(magicArray); 
+
+   int usedElements[] = {1, 23, 5, 61, 1, 2, 3, 6}; 
+
+   // find size of array
+   int arraySize = sizeof(usedElements) / sizeof(usedElements[0]);
+
+   int value = 61; 
+
+   if (valueInArray(value, usedElements, arraySize)) {
+      cout << value << " is in the usedElements array." << endl; 
+   } else {
+      cout << value << " isn't in the usedElements array." << endl; 
+   }
 
    system("PAUSE");
    return 0;
@@ -139,10 +152,22 @@ bool checkDiagSum(int values[][COLS])
   
 }
 
-// accepts two parameters: value to look for, and the array
-// that is being searched in
-bool valueInArray(int valueInQuestion, int theArray[]) {
+// accepts three parameters: value to look for, the array
+// that is being searched in, and the size of the array
+bool valueInArray(int valueInQuestion, int theArray[], int arraySize) {
    // purpose: finds whether or not the valueInQuestion is in theArray
    // if the value occurs in theArray, returns true
    // else, returns false 
+
+   // loop through the array 
+   for (int i = 0; i < arraySize; i++) {
+      // if the current value is equal to the valueInQuestion, 
+      // return true, as the valueInQuestion is present in the array 
+      if (theArray[i] == valueInQuestion) {
+         return true; 
+      }
+   }
+
+   // valueInQuestion is not in the array
+   return false; 
 }
