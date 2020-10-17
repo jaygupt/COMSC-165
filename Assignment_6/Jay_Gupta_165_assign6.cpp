@@ -24,7 +24,18 @@ int main() {
   
    int normalArray[ROWS][COLS] = { {10, 2, 3},
                                    {4, 15, 6},
-                                   {7, 8, -8} };                            
+                                   {7, 8, -8} }; 
+   
+   // custom test-array
+   int testArray[ROWS][COLS] = { {3, 1, 2}, 
+                                 {4, 5, 6}, 
+                                 {7, 8, 9}}; 
+
+   if (checkRange(testArray)) {
+      cout << "The array's values are in the range of 1 - 9.\n"; 
+   } else {
+      cout << "The array's values aren't in the range of 1 - 9.\n"; 
+   }
 
    // showArray(normalArray);
    // showResult(normalArray);
