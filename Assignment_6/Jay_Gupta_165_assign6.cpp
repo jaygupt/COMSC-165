@@ -31,12 +31,6 @@ int main() {
                                  {4, 5, 6}, 
                                  {7, 8, 9}}; 
 
-   if (checkRange(testArray)) {
-      cout << "The array's values are in the range of 1 - 9.\n"; 
-   } else {
-      cout << "The array's values aren't in the range of 1 - 9.\n"; 
-   }
-
    // showArray(normalArray);
    // showResult(normalArray);
  
@@ -95,10 +89,19 @@ bool checkRange(int values[][COLS]) {
    return true; 
 }
 
+// accepts a two-dimenstional int array as an argument
+bool checkUnique(int values[][COLS]) {
+  // if the values in the array are unique, returns true
+  // else, returns false (this means there are duplicates)
 
-bool checkUnique(int values[][COLS])
-{
-  
+  // naive solution: 
+  // have a single dimensional array of "used elements"
+  // while going through the 2D array, check if the value in 
+  // question is already in the used array. If it is, then 
+  // it is a duplicate, and return false. If it isn't, 
+  // add it to the array for future reference
+  // at the end, return true, as the whole array in question
+  // has unique values 
 }
 
 
