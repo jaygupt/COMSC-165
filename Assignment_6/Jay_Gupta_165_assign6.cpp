@@ -32,14 +32,8 @@ int main() {
    
    // custom test-array
    int testArray[ROWS][COLS] = { {3, 1, 2}, 
-                                 {4, 5, 6}, 
-                                 {7, 8, 9}}; 
-
-   if (checkUnique(normalArray)) {
-      cout << "The values in testArray are unique." << endl; 
-   } else {
-      cout << "The values in testArray aren't unique." << endl; 
-   }
+                                 {0, 3, 3}, 
+                                 {-1, 6, 1}}; 
 
    // showArray(normalArray);
    // showResult(normalArray);
@@ -143,23 +137,42 @@ bool checkUnique(int values[][COLS]) {
    return true; 
 }
 
+// accepts two-dimensional int array
+bool checkRowSum(int values[][COLS]) {
+   // returns true if sum of values in each array's 
+   // rows are equal; otherwise, returns false 
 
-bool checkRowSum(int values[][COLS])
-{
- 
+   // find sum of first row, second row, and third row
+   // if the sums aren't equal, return false
+   // else, return true 
+
+   // index 0: sum of row 1, index 1: sum of row 2, etc. 
+   int sums[3] = {}; 
+
+   for (int i = 0; i < ROWS; i++) {
+      for (int j = 0; j < COLS; j++) {
+         sums[i] += values[i][j]; 
+      }
+   }
+
+   if (sums[0] == sums[1] && sums[1] == sums[2]) {
+      // if all three row sums are equal to each other
+      return true;  
+   } else {
+      // all three row sums aren't equal to each other 
+      return false; 
+   }
 }
 
 
-bool checkColSum(int values[][COLS])
-{
+// bool checkColSum(int values[][COLS]) {
     
-}
+// }
 
 
-bool checkDiagSum(int values[][COLS])
-{
+// bool checkDiagSum(int values[][COLS]) {
   
-}
+// }
 
 // accepts three parameters: value to look for, the array
 // that is being searched in, and the size of the array
