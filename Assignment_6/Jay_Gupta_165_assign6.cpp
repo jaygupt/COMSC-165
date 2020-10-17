@@ -35,8 +35,6 @@ int main() {
                                  {0, 3, 3}, 
                                  {-1, 6, 1}}; 
 
-   checkColSum(testArray); 
-
    // showArray(normalArray);
    // showResult(normalArray);
  
@@ -157,6 +155,9 @@ bool checkRowSum(int values[][COLS]) {
       }
    }
 
+   // test
+   cout << sums[0] << sums[1] << sums[2] << endl; 
+
    if (sums[0] == sums[1] && sums[1] == sums[2]) {
       // if all three row sums are equal to each other
       return true;  
@@ -179,13 +180,10 @@ bool checkColSum(int values[][COLS]) {
    int sums[3] = {}; 
 
    for (int j = 0; j < COLS; j++) {
-      for (int i = 0; i < ROWS; j++) {
+      for (int i = 0; i < ROWS; i++) {
          sums[j] += values[i][j]; 
       }
    }
-
-   // test
-   cout << sums[0] << sums[1] << sums[2] << endl; 
 
    if (sums[0] == sums[1] && sums[1] == sums[2]) {
       // if all three column sums are equal to each other
