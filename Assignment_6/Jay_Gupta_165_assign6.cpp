@@ -35,6 +35,8 @@ int main() {
                                  {0, 3, 3}, 
                                  {-1, 6, 1}}; 
 
+   checkColSum(testArray); 
+
    // showArray(normalArray);
    // showResult(normalArray);
  
@@ -164,10 +166,35 @@ bool checkRowSum(int values[][COLS]) {
    }
 }
 
+// accepts two-dimensional int array
+bool checkColSum(int values[][COLS]) {
+   // returns true if sum of values in each array's 
+   // columns are equal; otherwise, returns false 
+   
+   // find sum of first column, second column, and third column
+   // if the sums aren't equal, return false
+   // else, return true 
 
-// bool checkColSum(int values[][COLS]) {
-    
-// }
+   // index 0: sum of column 1, index 1: sum of column 2, etc. 
+   int sums[3] = {}; 
+
+   for (int j = 0; j < COLS; j++) {
+      for (int i = 0; i < ROWS; j++) {
+         sums[j] += values[i][j]; 
+      }
+   }
+
+   // test
+   cout << sums[0] << sums[1] << sums[2] << endl; 
+
+   if (sums[0] == sums[1] && sums[1] == sums[2]) {
+      // if all three column sums are equal to each other
+      return true;  
+   } else {
+      // all three column sums aren't equal to each other 
+      return false; 
+   }
+}
 
 
 // bool checkDiagSum(int values[][COLS]) {
