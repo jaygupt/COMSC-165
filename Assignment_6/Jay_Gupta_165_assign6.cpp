@@ -17,6 +17,9 @@ bool checkRowSum(int[][COLS]);
 bool checkColSum(int[][COLS]);
 bool checkDiagSum(int[][COLS]);
 
+// custom function prototypes 
+bool valueInArray(int valueInQuestion, int theArray[]); 
+
 int main() {
    int magicArray[ROWS][COLS] = { {4, 9, 2},
                                   {3, 5, 7},
@@ -91,17 +94,31 @@ bool checkRange(int values[][COLS]) {
 
 // accepts a two-dimenstional int array as an argument
 bool checkUnique(int values[][COLS]) {
-  // if the values in the array are unique, returns true
-  // else, returns false (this means there are duplicates)
+   // if the values in the array are unique, returns true
+   // else, returns false (this means there are duplicates)
 
-  // naive solution: 
-  // have a single dimensional array of "used elements"
-  // while going through the 2D array, check if the value in 
-  // question is already in the used array. If it is, then 
-  // it is a duplicate, and return false. If it isn't, 
-  // add it to the array for future reference
-  // at the end, return true, as the whole array in question
-  // has unique values 
+   // naive solution: 
+   // have a single dimensional array of "used elements"
+   // while going through the 2D array, check if the value in 
+   // question is already in the used array. If it is, then 
+   // it is a duplicate, and return false. If it isn't, 
+   // add it to the array for future reference
+   // at the end, return true, as the whole array in question
+   // has unique values 
+
+   int usedElements[MAX]; 
+
+   // loop through array's rows
+   for (int i = 0; i < ROWS; i++) {
+      // loop through array's columns 
+      for (int j = 0; j < COLS; j++) {
+         int valueInQuestion = values[i][j]; 
+
+         // valueInArray function will check if valueInQuestion is 
+         // in usedElements. If it is, that means the value is a 
+         // duplicate. 
+      }
+   }
 }
 
 
@@ -120,4 +137,12 @@ bool checkColSum(int values[][COLS])
 bool checkDiagSum(int values[][COLS])
 {
   
+}
+
+// accepts two parameters: value to look for, and the array
+// that is being searched in
+bool valueInArray(int valueInQuestion, int theArray[]) {
+   // purpose: finds whether or not the valueInQuestion is in theArray
+   // if the value occurs in theArray, returns true
+   // else, returns false 
 }
