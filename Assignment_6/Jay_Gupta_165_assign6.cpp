@@ -41,7 +41,6 @@ int main() {
    // showArray(magicArray);
    // showResult(magicArray); 
 
-   system("PAUSE");
    return 0;
 }
 
