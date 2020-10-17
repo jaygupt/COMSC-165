@@ -1,4 +1,5 @@
-#include<iostream>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 // declare global constants
@@ -18,14 +19,14 @@ bool checkColSum(int[][COLS]);
 bool checkDiagSum(int[][COLS]);
 
 // custom function prototypes 
-bool valueInArray(int valueInQuestion, int theArray[], int arraySize); 
+bool valueInVector(int valueInQuestion, vector<int> theVector, int vectorSize); 
 
 int main() {
    int magicArray[ROWS][COLS] = { {4, 9, 2},
                                   {3, 5, 7},
                                   {8, 1, 6} };
   
-   int normalArray[ROWS][COLS] = { {10, 2, 3},
+   int normalArray[ROWS][COLS] = { {10, 10, 3},
                                    {4, 15, 6},
                                    {7, 8, -8} }; 
    
@@ -34,24 +35,17 @@ int main() {
                                  {4, 5, 6}, 
                                  {7, 8, 9}}; 
 
+   if (checkUnique(normalArray)) {
+      cout << "The values in testArray are unique." << endl; 
+   } else {
+      cout << "The values in testArray aren't unique." << endl; 
+   }
+
    // showArray(normalArray);
    // showResult(normalArray);
  
    // showArray(magicArray);
    // showResult(magicArray); 
-
-   int usedElements[] = {1, 23, 5, 61, 1, 2, 3, 6}; 
-
-   // find size of array
-   int arraySize = sizeof(usedElements) / sizeof(usedElements[0]);
-
-   int value = 61; 
-
-   if (valueInArray(value, usedElements, arraySize)) {
-      cout << value << " is in the usedElements array." << endl; 
-   } else {
-      cout << value << " isn't in the usedElements array." << endl; 
-   }
 
    system("PAUSE");
    return 0;
@@ -105,7 +99,7 @@ bool checkRange(int values[][COLS]) {
    return true; 
 }
 
-// accepts a two-dimenstional int array as an argument
+// accepts a two-dimensional int array as an argument
 bool checkUnique(int values[][COLS]) {
    // if the values in the array are unique, returns true
    // else, returns false (this means there are duplicates)
@@ -119,7 +113,8 @@ bool checkUnique(int values[][COLS]) {
    // at the end, return true, as the whole array in question
    // has unique values 
 
-   int usedElements[MAX]; 
+   // TODO: Add why this is a vector 
+   vector<int> usedElements; 
 
    // loop through array's rows
    for (int i = 0; i < ROWS; i++) {
@@ -130,8 +125,22 @@ bool checkUnique(int values[][COLS]) {
          // valueInArray function will check if valueInQuestion is 
          // in usedElements. If it is, that means the value is a 
          // duplicate. 
+
+         // first, find size of usedElements
+         int vectorSize = usedElements.size(); 
+
+         if (valueInVector(valueInQuestion, usedElements, vectorSize)) {
+            // valueInQuestion is a duplicate 
+            return false; 
+         } else {
+            // new value; add this value to usedElements
+            usedElements.push_back(valueInQuestion); 
+         }
       }
    }
+
+   // values in 2D array are unique 
+   return true; 
 }
 
 
@@ -154,16 +163,16 @@ bool checkDiagSum(int values[][COLS])
 
 // accepts three parameters: value to look for, the array
 // that is being searched in, and the size of the array
-bool valueInArray(int valueInQuestion, int theArray[], int arraySize) {
+bool valueInVector(int valueInQuestion, vector<int> theVector, int vectorSize) {
    // purpose: finds whether or not the valueInQuestion is in theArray
-   // if the value occurs in theArray, returns true
    // else, returns false 
+   // if the value occurs in theArray, returns true
 
    // loop through the array 
-   for (int i = 0; i < arraySize; i++) {
+   for (int i = 0; i < vectorSize; i++) {
       // if the current value is equal to the valueInQuestion, 
       // return true, as the valueInQuestion is present in the array 
-      if (theArray[i] == valueInQuestion) {
+      if (theVector[i] == valueInQuestion) {
          return true; 
       }
    }
