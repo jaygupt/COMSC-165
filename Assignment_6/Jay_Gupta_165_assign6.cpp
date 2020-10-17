@@ -35,6 +35,8 @@ int main() {
                                  {0, 3, 3}, 
                                  {-1, 6, 1}}; 
 
+   checkDiagSum(magicArray); 
+
    // showArray(normalArray);
    // showResult(normalArray);
  
@@ -193,10 +195,24 @@ bool checkColSum(int values[][COLS]) {
    }
 }
 
+// accepts two-dimensional int array
+bool checkDiagSum(int values[][COLS]) {
+   // calculate first diagonal sum, then second
+   // if they are equal, return true
+   // else, return false
 
-// bool checkDiagSum(int values[][COLS]) {
-  
-// }
+   // find first diagonal sum
+   int firstDiagonal = values[0][0] + values[1][1] + values[2][2]; 
+
+   // find second diagonal sum
+   int secondDiagonal = values[2][0] + values[1][1] + values[0][2]; 
+
+   if (firstDiagonal == secondDiagonal) {
+      return true; 
+   } else {
+      return false; 
+   }
+}
 
 // accepts three parameters: value to look for, the array
 // that is being searched in, and the size of the array
