@@ -35,13 +35,13 @@ int main() {
                                  {0, 3, 3}, 
                                  {-1, 6, 1}}; 
 
-   checkDiagSum(magicArray); 
+   cout << endl;
 
-   // showArray(normalArray);
-   // showResult(normalArray);
+   showArray(normalArray);
+   showResult(normalArray);
  
-   // showArray(magicArray);
-   // showResult(magicArray); 
+   showArray(magicArray);
+   showResult(magicArray); 
 
    return 0;
 }
@@ -57,6 +57,7 @@ void showResult(int values[][COLS]) {
 
 
 void showArray(int values[][COLS]) {
+   
    for (int row = 0; row < ROWS; row++) {
       for (int col = 0; col < COLS; col++) {
          cout << values[row][col] << " ";
@@ -66,8 +67,20 @@ void showArray(int values[][COLS]) {
    }
 }
 
+// accepts a two-dimenstional int array as an argument
 bool isMagicSquare(int values[][COLS]) {   
- 
+   // returns true if array meets all 
+   // requirements of a magic square
+   // else, returns false 
+
+   if (checkRange(values) && checkUnique(values) && checkRowSum(values)
+   && checkColSum(values) && checkDiagSum(values)) {
+      // if the array passes all of the tests
+      
+      return true; 
+   } else {
+      return false; 
+   }
 }
 
 // accepts a two-dimenstional int array as an argument
@@ -155,9 +168,6 @@ bool checkRowSum(int values[][COLS]) {
          sums[i] += values[i][j]; 
       }
    }
-
-   // test
-   cout << sums[0] << sums[1] << sums[2] << endl; 
 
    if (sums[0] == sums[1] && sums[1] == sums[2]) {
       // if all three row sums are equal to each other
