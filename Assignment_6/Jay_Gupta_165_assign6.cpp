@@ -22,18 +22,13 @@ bool checkDiagSum(int[][COLS]);
 bool valueInVector(int valueInQuestion, vector<int> theVector, int vectorSize); 
 
 int main() {
-   int magicArray[ROWS][COLS] = { {4, 9, 2},
-                                  {3, 5, 7},
-                                  {8, 1, 6} };
+   int magicArray[ROWS][COLS] = { {1, 3, 8},
+                                  {8, 5, 5},
+                                  {2, 2, 6} };
   
-   int normalArray[ROWS][COLS] = { {10, 10, 3},
-                                   {4, 15, 6},
-                                   {7, 8, -8} }; 
-   
-   // custom test-array
-   int testArray[ROWS][COLS] = { {3, 1, 2}, 
-                                 {0, 3, 3}, 
-                                 {-1, 6, 1}}; 
+   int normalArray[ROWS][COLS] = { {2, 1, 2},
+                                   {6, 5, 1},
+                                   {4, 33, 8} }; 
 
    cout << endl;
 
