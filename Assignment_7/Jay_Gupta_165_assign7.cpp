@@ -16,20 +16,36 @@ int main() {
    string boyName, girlName;   
    bool boyNameFound, girlNameFound;  
 
-   // vector<string> boyNames(getVector("BoyNames.txt"));
-   // vector<string> girlNames(getVector("GirlNames.txt"));
+   vector<string> boyNames(getVector("BoyNames.txt"));
+   vector<string> girlNames(getVector("GirlNames.txt"));
    
    boyName = getName("boy's");   
    girlName = getName("girl's");
 
-   cout << "You selected: " << boyName << " for boy's name." << endl; 
-   cout << "You selected: " << girlName << " for girl's name." << endl;
+   // test for getName
+   // cout << "You selected: " << boyName << " for boy's name." << endl; 
+   // cout << "You selected: " << girlName << " for girl's name." << endl;
    
    // selectionSort(boyNames);  
    // selectionSort(girlNames);
    
-   // boyNameFound = search(boyName, boyNames); 
-   // girlNameFound = search(girlName, girlNames);
+   boyNameFound = search(boyName, boyNames); 
+   girlNameFound = search(girlName, girlNames);
+
+   // tests search function
+   if (boyNameFound) {
+      cout << boyName << " was found in the boyNames vector."; 
+   } else {
+      cout << boyName << " wasn't found in the boyNames vector.";
+   }
+
+   cout << endl; 
+
+   if (girlNameFound) {
+      cout << girlName << " was found in the girlNames vector."; 
+   } else {
+      cout << girlName << " wasn't found in the girlNames vector.";
+   }
    
    // displayResult("boy's", boyName, boyNameFound);    
    // displayResult("girl's", girlName, girlNameFound);
@@ -45,7 +61,7 @@ int main() {
    
    // cout << endl;
    
-   system("PAUSE");
+   // system("PAUSE");
    return 0;
 }
 
@@ -79,7 +95,6 @@ vector<string> getVector(const string& fileName) {
 
    // while the program hasn't reached the end of the file
    while (theFile >> name) {
-      cout << name << endl; 
       theVector.push_back(name); 
    }
 
@@ -99,4 +114,15 @@ string getName(const string& gender) {
    cout << endl; 
 
    return name; 
+}
+
+// searches vectorToSearch for name
+bool search(const string& name, const vector<string>& vectorToSearch) {
+   for (int i = 0; i < vectorToSearch.size(); i++) {
+      if (name == vectorToSearch[i]) {
+         return true; 
+      }
+   }
+
+   return false; 
 }
