@@ -19,8 +19,11 @@ int main() {
    // vector<string> boyNames(getVector("BoyNames.txt"));
    // vector<string> girlNames(getVector("GirlNames.txt"));
    
-   // boyName = getName("boy's");   
-   // girlName = getName("girl's");
+   boyName = getName("boy's");   
+   girlName = getName("girl's");
+
+   cout << "You selected: " << boyName << " for boy's name." << endl; 
+   cout << "You selected: " << girlName << " for girl's name." << endl;
    
    // selectionSort(boyNames);  
    // selectionSort(girlNames);
@@ -88,10 +91,12 @@ vector<string> getVector(const string& fileName) {
 
 string getName(const string& gender) {
    // name to be returned
-   string name = "Placeholder"; 
+   string name; 
 
    cout << "Enter a " << gender << " name, or N if you do not wish "
-   << "to enter a " << gender << " name"; 
+   << "to enter a " << gender << " name: "; 
+   cin >> name; 
+   cout << endl; 
 
    return name; 
 }
