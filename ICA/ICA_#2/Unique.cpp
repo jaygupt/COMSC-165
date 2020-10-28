@@ -1,15 +1,11 @@
 #include <iostream>
 using namespace std;
 
-
 void print_array(const char * ptr, int size);
 bool is_unique(const char * ptr, int size);
 void display_result(bool result);
 
-
-int main()
-{
-
+int main() {
 	const int SIZE = 7;
 	const int SIZE2 = 10;
 
@@ -75,36 +71,40 @@ int main()
 	display_result(result);
 	
 
-	system("PAUSE");
+	// system("PAUSE");
 	return 0;
 }
 
-
+// can't change what value of what ptr points at; 
+// can still do pointer arithmetic
 void print_array(const char * ptr, int size)
 {
+	for (int i = 0; i < size; i++) {
+		cout << *(ptr + i) << " "; 
+	} 
 
-  // Implement this function
-  // Implement this function
-  // Implement this function
-  // Implement this function
-  // Implement this function
-  
+	cout << endl; 
 }
 
-
+// can't change value of what ptr is pointing at 
 bool is_unique(const char * ptr, int size)
 {
 	
 	// This is another pointer that can be used
+	// ptr2 
 	const char* ptr2 = nullptr;
 
-    
-	// Implement this function
-	// Implement this function
-	// Implement this function
-	// Implement this function
-	// Implement this function
-	
+	// we are going through the array 
+	for (int i = 0; i < size - 1; i++) {
+		// from the element to the right of the current 
+		for (int j = i + 1; j < size; j++) {
+			if (*(ptr + i) == *(ptr + j)) {
+				return false; 
+			}
+		}
+	}
+
+	return true; 
 
 }
 
