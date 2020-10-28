@@ -4,6 +4,7 @@
 #include <vector>
 using namespace std;
 
+// function prototypes 
 vector<string> getVector(const string&);
 string getName(const string&);
 void selectionSort(vector<string>&);
@@ -16,18 +17,22 @@ int main() {
    string boyName, girlName;   
    bool boyNameFound, girlNameFound;  
 
+   // 1. Declare and initialize vectors, by calling the getVector function, 
+   // converting input from text files into vector values. 
    vector<string> boyNames(getVector("BoyNames.txt"));
    vector<string> girlNames(getVector("GirlNames.txt"));
    
    // whitespace before program 
    cout << endl; 
 
+   // 2. Prompt user for name of boy and girl name; store choice in respective variable.
    boyName = getName("boy's");   
    girlName = getName("girl's");
 
    cout << endl; 
 
-   // if user selected N for boyName
+   // 3. if user selected N for boyName, display specific message, 
+   // else, display if chosen name is popular or not. 
    if (boyName == "N") {
       cout << "You chose not to enter a boy's name." << endl; 
    } else {
@@ -35,6 +40,7 @@ int main() {
       displayResult("boy's", boyName, boyNameFound);
    }
 
+   // repeat with girl names
    if (girlName == "N") {
       cout << "You chose not to enter a girl's name." << endl; 
    } else {
@@ -42,7 +48,7 @@ int main() {
       displayResult("girl's", girlName, girlNameFound);
    }
 
-   // whitespace after the program ends 
+   // whitespace after the output of the program ends 
    cout << endl; 
    
    selectionSort(boyNames);  
@@ -79,27 +85,32 @@ void selectionSort(vector<string> &arr) {
    }
 }
 
+// 4. getVector takes in a fileName as a parameter, and returns a 
+// vector of the respective file's values 
 vector<string> getVector(const string& fileName) {
-   // declare the ifstream object; reading from fileName
+   // 5. declare the ifstream object; ifstream because reading from fileName
    ifstream theFile(fileName); 
 
    // declare vector to be used 
    vector<string> theVector; 
 
-   // each data string from the file will be stored in name 
+   // 6. each data string from the file will be stored in name 
    string name; 
 
-   // while the program hasn't reached the end of the file
+   // 7. while the program hasn't reached the end of the file, 
+   // take a name and add it to theVector 
    while (theFile >> name) {
       theVector.push_back(name); 
    }
 
-   // close the file to utilize processing power 
+   // close the file  
    theFile.close(); 
 
    return theVector; 
 }
 
+// 8. getName takes in the gender, and asks the user for 
+// a name of that gender that they think may be popular 
 string getName(const string& gender) {
    // name to be returned
    string name; 
@@ -111,8 +122,11 @@ string getName(const string& gender) {
    return name; 
 }
 
-// searches vectorToSearch for name
+// 9. searches vectorToSearch for name. If the name is there, returns 
+// true; else, returns false 
 bool search(const string& name, const vector<string>& vectorToSearch) {
+   // 10. Uses a linear search; if the current value in the loop 
+   // equals name, it will return true as the value is present in the vector 
    for (int i = 0; i < vectorToSearch.size(); i++) {
       if (name == vectorToSearch[i]) {
          return true; 
@@ -123,7 +137,7 @@ bool search(const string& name, const vector<string>& vectorToSearch) {
 }
 
 void displayResult(const string& gender, const string& name, bool nameFound) {
-   // if search returns true, print name is popular
+   // 11. if search returns true, print name is popular
    // else, print name isn't popular 
 
    if (nameFound) {
@@ -138,6 +152,9 @@ void displayResult(const string& gender, const string& name, bool nameFound) {
 void reverseVector(vector<string>& vectorToReverse) {
    int vectorSize = vectorToReverse.size(); 
 
+   // 12. going from the initial value up until just before the halfway 
+   // value, store the current in temp, and set the current equal to 
+   // its counterpart on the other side. 
    for (int i = 0; i < (vectorSize / 2); i++) {
       string temp = vectorToReverse[i];  
       vectorToReverse[i] = vectorToReverse[vectorSize - i - 1]; 
@@ -146,10 +163,13 @@ void reverseVector(vector<string>& vectorToReverse) {
 }
 
 void writeToFile(const string& fileToCreate, const vector<string>& theVector) {
-   // declare ofstream object
+   // 13. declare ofstream object, since we will be writing 
+   // values to the file 
    ofstream outputFile(fileToCreate); 
 
    string name; 
+   // 14. For each value in theVector, set the value to name, and 
+   // write name along with an end line to outputFile
    for (int i = 0; i < theVector.size(); i++) {
       name = theVector[i]; 
       outputFile << name << endl; 
