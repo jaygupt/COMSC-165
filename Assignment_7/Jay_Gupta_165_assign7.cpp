@@ -9,7 +9,7 @@ string getName(const string&);
 void selectionSort(vector<string>&);
 bool search(const string&, const vector<string>&);
 void displayResult(const string&, const string&, bool);
-void writeToFile(const string& fileToCreate, const vector<string>& fileValues);
+void writeToFile(const string& fileToCreate, const vector<string>& theVector);
 void reverseVector(vector<string>& vectorToReverse);
 
 int main() {
@@ -45,17 +45,17 @@ int main() {
    // whitespace after the program ends 
    cout << endl; 
    
-   // selectionSort(boyNames);  
-   // selectionSort(girlNames);
+   selectionSort(boyNames);  
+   selectionSort(girlNames);
    
-   // writeToFile("Boynames_asc.txt", boyNames); 
-   // writeToFile("Girlnames_asc.txt", girlNames);
+   writeToFile("Boynames_asc.txt", boyNames); 
+   writeToFile("Girlnames_asc.txt", girlNames);
 
-   // reverseVector(boyNames); 
-   // reverseVector(girlNames);
+   reverseVector(boyNames); 
+   reverseVector(girlNames);
 
-   // writeToFile("Boynames_desc.txt", boyNames); 
-   // writeToFile("Girlnames_desc.txt", girlNames);
+   writeToFile("Boynames_desc.txt", boyNames); 
+   writeToFile("Girlnames_desc.txt", girlNames);
    
    // system("PAUSE");
    return 0;
@@ -139,8 +139,19 @@ void reverseVector(vector<string>& vectorToReverse) {
    int vectorSize = vectorToReverse.size(); 
 
    for (int i = 0; i < (vectorSize / 2); i++) {
-      string temp = vectorToReverse[i]; 
-      vectorToReverse[i] = vectorToReverse[vectorSize - 1]; 
-      vectorToReverse[vectorSize - 1] = temp; 
+      string temp = vectorToReverse[i];  
+      vectorToReverse[i] = vectorToReverse[vectorSize - i - 1]; 
+      vectorToReverse[vectorSize - i - 1] = temp; 
+   }
+}
+
+void writeToFile(const string& fileToCreate, const vector<string>& theVector) {
+   // declare ofstream object
+   ofstream outputFile(fileToCreate); 
+
+   string name; 
+   for (int i = 0; i < theVector.size(); i++) {
+      name = theVector[i]; 
+      outputFile << name << endl; 
    }
 }
