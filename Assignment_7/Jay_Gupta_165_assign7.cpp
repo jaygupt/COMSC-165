@@ -33,22 +33,22 @@ int main() {
    girlNameFound = search(girlName, girlNames);
 
    // tests search function
-   if (boyNameFound) {
-      cout << boyName << " was found in the boyNames vector."; 
-   } else {
-      cout << boyName << " wasn't found in the boyNames vector.";
-   }
+   // if (boyNameFound) {
+   //    cout << boyName << " was found in the boyNames vector."; 
+   // } else {
+   //    cout << boyName << " wasn't found in the boyNames vector.";
+   // }
 
-   cout << endl; 
+   // cout << endl; 
 
-   if (girlNameFound) {
-      cout << girlName << " was found in the girlNames vector."; 
-   } else {
-      cout << girlName << " wasn't found in the girlNames vector.";
-   }
+   // if (girlNameFound) {
+   //    cout << girlName << " was found in the girlNames vector."; 
+   // } else {
+   //    cout << girlName << " wasn't found in the girlNames vector.";
+   // }
    
-   // displayResult("boy's", boyName, boyNameFound);    
-   // displayResult("girl's", girlName, girlNameFound);
+   displayResult("boy's", boyName, boyNameFound);    
+   displayResult("girl's", girlName, girlNameFound);
    
    // writeToFile("Boynames_asc.txt", boyNames); 
    // writeToFile("Girlnames_asc.txt", girlNames);
@@ -108,6 +108,7 @@ string getName(const string& gender) {
    // name to be returned
    string name; 
 
+   // TODO: Must add option for N 
    cout << "Enter a " << gender << " name, or N if you do not wish "
    << "to enter a " << gender << " name: "; 
    cin >> name; 
@@ -125,4 +126,17 @@ bool search(const string& name, const vector<string>& vectorToSearch) {
    }
 
    return false; 
+}
+
+void displayResult(const string& gender, const string& name, bool nameFound) {
+   // if search returns true, print name is popular
+   // else, print name isn't popular 
+
+   if (nameFound) {
+      cout << name << " is one of the most popular " << gender << " names."; 
+   } else {
+      cout << name << " is NOT one of the most popular " << gender << " names."; 
+   }
+
+   cout << endl; 
 }
