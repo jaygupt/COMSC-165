@@ -9,8 +9,8 @@ string getName(const string&);
 void selectionSort(vector<string>&);
 bool search(const string&, const vector<string>&);
 void displayResult(const string&, const string&, bool);
-void writeToFile(const string&, const vector<string>&);
-void reverseVector(vector<string>&);
+void writeToFile(const string& fileToCreate, const vector<string>& fileValues);
+void reverseVector(vector<string>& vectorToReverse);
 
 int main() {
    string boyName, girlName;   
@@ -44,41 +44,18 @@ int main() {
 
    // whitespace after the program ends 
    cout << endl; 
-
-   // test for getName
-   // cout << "You selected: " << boyName << " for boy's name." << endl; 
-   // cout << "You selected: " << girlName << " for girl's name." << endl;
    
    // selectionSort(boyNames);  
    // selectionSort(girlNames);
- 
-
-   // tests search function
-   // if (boyNameFound) {
-   //    cout << boyName << " was found in the boyNames vector."; 
-   // } else {
-   //    cout << boyName << " wasn't found in the boyNames vector.";
-   // }
-
-   // cout << endl; 
-
-   // if (girlNameFound) {
-   //    cout << girlName << " was found in the girlNames vector."; 
-   // } else {
-   //    cout << girlName << " wasn't found in the girlNames vector.";
-   // }
-       
    
    // writeToFile("Boynames_asc.txt", boyNames); 
    // writeToFile("Girlnames_asc.txt", girlNames);
-   
+
    // reverseVector(boyNames); 
    // reverseVector(girlNames);
 
    // writeToFile("Boynames_desc.txt", boyNames); 
    // writeToFile("Girlnames_desc.txt", girlNames);
-   
-   // cout << endl;
    
    // system("PAUSE");
    return 0;
@@ -156,4 +133,14 @@ void displayResult(const string& gender, const string& name, bool nameFound) {
    }
 
    cout << endl; 
+}
+
+void reverseVector(vector<string>& vectorToReverse) {
+   int vectorSize = vectorToReverse.size(); 
+
+   for (int i = 0; i < (vectorSize / 2); i++) {
+      string temp = vectorToReverse[i]; 
+      vectorToReverse[i] = vectorToReverse[vectorSize - 1]; 
+      vectorToReverse[vectorSize - 1] = temp; 
+   }
 }
