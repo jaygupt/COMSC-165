@@ -19,8 +19,31 @@ int main() {
    vector<string> boyNames(getVector("BoyNames.txt"));
    vector<string> girlNames(getVector("GirlNames.txt"));
    
+   // whitespace before program 
+   cout << endl; 
+
    boyName = getName("boy's");   
    girlName = getName("girl's");
+
+   cout << endl; 
+
+   // if user selected N for boyName
+   if (boyName == "N") {
+      cout << "You chose not to enter a boy's name." << endl; 
+   } else {
+      boyNameFound = search(boyName, boyNames);
+      displayResult("boy's", boyName, boyNameFound);
+   }
+
+   if (girlName == "N") {
+      cout << "You chose not to enter a girl's name." << endl; 
+   } else {
+      girlNameFound = search(girlName, girlNames);
+      displayResult("girl's", girlName, girlNameFound);
+   }
+
+   // whitespace after the program ends 
+   cout << endl; 
 
    // test for getName
    // cout << "You selected: " << boyName << " for boy's name." << endl; 
@@ -28,9 +51,7 @@ int main() {
    
    // selectionSort(boyNames);  
    // selectionSort(girlNames);
-   
-   boyNameFound = search(boyName, boyNames); 
-   girlNameFound = search(girlName, girlNames);
+ 
 
    // tests search function
    // if (boyNameFound) {
@@ -46,9 +67,7 @@ int main() {
    // } else {
    //    cout << girlName << " wasn't found in the girlNames vector.";
    // }
-   
-   displayResult("boy's", boyName, boyNameFound);    
-   displayResult("girl's", girlName, girlNameFound);
+       
    
    // writeToFile("Boynames_asc.txt", boyNames); 
    // writeToFile("Girlnames_asc.txt", girlNames);
@@ -108,11 +127,9 @@ string getName(const string& gender) {
    // name to be returned
    string name; 
 
-   // TODO: Must add option for N 
    cout << "Enter a " << gender << " name, or N if you do not wish "
    << "to enter a " << gender << " name: "; 
    cin >> name; 
-   cout << endl; 
 
    return name; 
 }
