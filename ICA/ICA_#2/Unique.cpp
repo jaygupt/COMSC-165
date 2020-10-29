@@ -88,15 +88,15 @@ void print_array(const char * ptr, int size)
 
 // can't change value of what ptr is pointing at 
 bool is_unique(const char * ptr, int size)
-{
-	
+{ 
 	// This is another pointer that can be used
 	// ptr2 
 	const char* ptr2 = nullptr;
 
 	// we are going through the array 
 	for (int i = 0; i < size - 1; i++) {
-		// from the element to the right of the current 
+		// from the element to the right of the current until the end of the array,
+		// check if there is a match. if there is, it is a duplicate
 		for (int j = i + 1; j < size; j++) {
 			if (*(ptr + i) == *(ptr + j)) {
 				return false; 
