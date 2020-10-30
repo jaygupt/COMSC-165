@@ -2,15 +2,13 @@
 using namespace std;
 
 // function prototypes 
-int getMode(int*, int);
-int* makeArray(int);
+int getMode(int *array, int size);
+int* makeArray(int size);
 
 int main() {	
 	// variable declarations 
-	const int SIZE = 9;
-	int test[SIZE] = {5, 4, 11, 10, 10, 10, 11, 11, 10}; 
-	// int test[SIZE] = {1, 8, 3, 8, 3, 2, 8, 1, 8, 4, 5};
-	// int test[SIZE] = {1, 2, 7, 3, 3, 7, 2, 1, 7, 4, 7};
+	const int SIZE = 8;
+	int test[SIZE] = {9, 1, 7, 2, 12, 3, 9, 5};
 	int mode;
 
 	// get the mode using the test array and size constant 
@@ -19,10 +17,10 @@ int main() {
 	// if mode is set to -1, the array has no mode. else, 
 	// there was a mode  
 	if (mode == -1)
-		cout << "The test set has no mode.\n";
+		cout << "\nThe test set has no mode.\n\n";
 	else
 		cout << "\nThe mode of the test set is: " 
-		     << mode << endl;
+		     << mode << endl << endl;
 
     // system("PAUSE");
 	return 0;
@@ -55,45 +53,35 @@ int getMode(int *array, int size) {
 		*(frequencies + i) = occurrences; 
 	}
 
-	for (int i = 0; i < size; i++) {
-		cout << *(frequencies + i) << " "; 
-	}
-	
-	// find highest's index in frequencies
-	// to start the comparison, select the zeroeth index 
-	int highestIndex = 0; 
+	// we have our frequencies 
+	// the highest frequency corresponds to mode in array 
 
-	// from the first index until the end 
-	for (int i = 1; i < size; i++) {
-		// if the value of frequencies at index i is greater than 
-		// the value of frequencies at the current highestIndex,
-		if (*(frequencies + i) > *(frequencies + highestIndex)) {
-			// set highestIndex to this new index i
-			highestIndex = i; 
+	int highestFrequency = 1; 
+	int highestFrequencyIndex = 0; 
+
+	for (int i = 0; i < size; i++) {
+		if (*(frequencies + i) > highestFrequency) {
+			highestFrequency = *(frequencies + i); 
+			highestFrequencyIndex = i; 
 		}
 	}
 
-	// find mode using highestIndex
-	int mode = *(array + highestIndex); 
-	
+	int mode; 
+
+	if (highestFrequency == 1) {
+		mode = -1; 
+	} else {
+		mode = *(array + highestFrequencyIndex); 
+	}
+
 	delete[] frequencies; // Do NOT remove this -- this needs to be at the end of the function
 	                       // to remove the dynamically allocated frequencies array from memory
 	                       // when it is no longer needed.
-	if (mode == 1) {
-		return -1; 
-	} 
 
 	return mode; 
 }
-
-
 
 // makeArray has been completed
 int* makeArray(int size) {
 	return new int[size];
 }
-
-
-
-
-
