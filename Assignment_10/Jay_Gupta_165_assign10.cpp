@@ -6,6 +6,7 @@ using namespace std;
 
 // add prototypes for your functions
 void readDataFromFileIntoArray(char* ptr); 
+void createReportBasedOnData(const char* ptr); 
 
 // program constants
 const int NUM_OF_MONTHS = 3;
@@ -25,7 +26,17 @@ int main() {
 	//implement the rest of main
 	
 	// read data from file into array
-	readDataFromFileIntoArray(ptr); 
+	readDataFromFileIntoArray(ptr);
+
+	// TEST to see if array has values
+	// for (int i = 0; i < NUM_OF_MONTHS; i++) {
+	// 	for (int j = 0; j < NUM_OF_DAYS; j++) {
+	// 		cout << weather[i][j] << endl; 
+	// 	}
+	// }
+
+	// based on data, create statistics
+	// createReportBasedOnData(ptr);  
 
 	// system("PAUSE");
 	return 0;
@@ -33,6 +44,11 @@ int main() {
 
 // implement your functions
 void readDataFromFileIntoArray(char* ptr) {
+	// using a second, temporary pointer to use pointer 
+	// arithmetic on
+	char* secondPtr = nullptr; 
+	secondPtr = ptr; 
+
 	// create an object of the file
 	ifstream weatherFile("RainOrShine.txt");
 
@@ -45,10 +61,14 @@ void readDataFromFileIntoArray(char* ptr) {
 		// store the current reading in currentForecast
 		char currentForecast; 
 		while (weatherFile >> currentForecast) {
-			*ptr = currentForecast; 
-			ptr++; 
+			*secondPtr = currentForecast; 
+			secondPtr++; 
 		} 
 	}
 
 	weatherFile.close(); 
+}
+
+void createReportBasedOnData(const char* ptr) {
+	// display July days
 }
