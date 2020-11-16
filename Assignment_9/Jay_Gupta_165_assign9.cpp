@@ -7,8 +7,8 @@ int* makeArray(int size);
 
 int main() {	
 	// variable declarations 
-	const int SIZE = 8;
-	int test[SIZE] = {9, 1, 7, 2, 12, 3, 9, 5};
+	const int SIZE = 11;
+	int test[SIZE] = {7, 8, 7, 7, 2, 2, 3, 2, 1, 1, 1};
 	int mode;
 
 	// 1. Get the mode using the test array and size constant 
