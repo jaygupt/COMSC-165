@@ -4,12 +4,16 @@
 #include <string>
 using namespace std;
 
-// program constants
+// 1. These are the program constants. TYPES_OF_WEATHER will
+// be used when generating the report, and displaying it.
 const int NUM_OF_MONTHS = 3;
 const int NUM_OF_DAYS = 30;
 const int TYPES_OF_WEATHER = 3; 
 
-// add prototypes for your functions
+// 2. These are the prototypes for the functions. It follows 
+// the principle of least priviledge; i.e. displaying a report 
+// doesn't require the function to change the original values, 
+// hence, const is used.
 void readDataFromFileIntoArray(char* ptr); 
 void createReportBasedOnData(const char* data, int* const reportPtr);
 void displayReport(const int* reportPtr); 
@@ -26,16 +30,21 @@ int main() {
 
 	//implement the rest of main
 	
-	// read data from file into array
+	// 3. Read the data from RainOrShine.txt into the weather array
+	// using the pointer. Pointer, as a result, has no const constraints.
 	readDataFromFileIntoArray(ptr);
 
-	// based on data, create report
+	// 4. Based on the data, create a report. Because the function
+	// increments based on previous values in the array, we  
+	// initialize report to have values of 0
 	int report[NUM_OF_MONTHS][TYPES_OF_WEATHER] = {
 		{0, 0, 0},
 		{0, 0, 0},
 		{0, 0, 0}};
 	int* reportPtr = &report[0][0]; 
 
+	// 5. Create and display the resulting report. createReport function
+	// doesn't return anything, as pointers are automatically "passed by reference".
 	createReportBasedOnData(ptr, reportPtr);
 
 	displayReport(reportPtr); 
@@ -43,22 +52,25 @@ int main() {
 	return 0;
 }
 
-// implement your functions
 void readDataFromFileIntoArray(char* ptr) {
-	// using a second, temporary pointer to use pointer 
-	// arithmetic on
+	// 6. Using a second, temporary pointer to use pointer 
+	// arithmetic on. If we did it on ptr, it wouldn't be ideal, 
+	// as it is the only pointer that points at the beginning of the
+	// weather array
 	char* secondPtr = nullptr; 
 	secondPtr = ptr;  
 
-	// create an object of the file
+	// 7. Create an object of the file using ifstream.
 	ifstream weatherFile("RainOrShine.txt");
 
+	// 8. Test to see if opening the file was successful. 
 	if (!weatherFile) {
 		// the file wasn't able to be opened
 		cout << "Error in Opening File." << endl;
 	} else {
 		// the file successfully opened
 		
+		// 9. While reading the file, 
 		// store the current reading in currentForecast
 		char currentForecast; 
 		while (weatherFile >> currentForecast) {
@@ -71,6 +83,7 @@ void readDataFromFileIntoArray(char* ptr) {
 }
 
 void createReportBasedOnData(const char* data, int* const reportPtr) {
+	// 10. The goal for this function is to store in report:
 	// Report Result:
 	// 11 8 11
 	// 11 14 5
@@ -79,10 +92,13 @@ void createReportBasedOnData(const char* data, int* const reportPtr) {
 	const char* secondPtr = nullptr; 
 	secondPtr = data; 
 
-	// go through the array from secondPtr and fill 
+	// 11. Go through the weather array (by referencing secondPtr) and fill 
 	// report array appropriately
 	for (int i = 0; i < 90; i++) {
+		// 12. Each if block going from 0 to 30 represents a month.
 		if (i >= 0 && i < 30) {
+			// 13. Depending on the value of *secondPtr, increment a particular
+			// value in the report array.
 			if (*secondPtr == 'R') {
 				*(reportPtr) = *(reportPtr) + 1; 
 			} else if (*secondPtr == 'C') {
@@ -114,6 +130,7 @@ void createReportBasedOnData(const char* data, int* const reportPtr) {
 }
 
 void displayReport(const int* reportPtr) {
+	// 14. Add totals for displaying at the bottom. 
 	int rainyTotal = *(reportPtr) + *(reportPtr + 3) + *(reportPtr + 6); 
 	int cloudyTotal = *(reportPtr + 1) + *(reportPtr + 4) + *(reportPtr + 7);
 	int sunnyTotal = *(reportPtr + 2) + *(reportPtr + 5) + *(reportPtr + 8); 
