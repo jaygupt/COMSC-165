@@ -314,25 +314,42 @@ void changeRecord(fstream &invFile) {
 }
 
 Inventory* buildList(fstream &invFile) {
+   // 15. Temp will be used to refer to the 
+   // previously created node
    Inventory* temp = nullptr; 
+   // dynamically allocate memory to head 
    Inventory* head = new Inventory; 
 
+   // open the file 
    invFile.open("invtry.dat", ios::in | ios::binary); 
+   // first read will go to head pointer 
    invFile.read(reinterpret_cast<char *>(head), sizeof(Inventory));
 
+   // 16. Set temp equal to head; both are pointing 
+   // at the same thing
    temp = head; 
 
+   // while the end of file hasn't been reached...
    while (!invFile.eof()) {
+      // 17. new_node is being dynamically created each 
+      // time as the read statement doesn't make a new variable,
+      // rather, it changes the variable's value. 
       Inventory* new_node = new Inventory; 
       invFile.read(reinterpret_cast<char *>(new_node), sizeof(Inventory));
       if (invFile.eof()) {
          break; 
       }
 
+      // 18. As temp points to the previous node, set 
+      // it's next property to the current node. Then,
+      // set temp to the current node in preparation for
+      // the next iteration.
       temp->next = new_node; 
       temp = new_node;  
    }
 
+   // 19. Finally, since temp will be pointing to the last
+   // created node, set it's next property to nullptr. 
    temp->next = nullptr; 
 
    invFile.close(); 
@@ -343,6 +360,9 @@ Inventory* buildList(fstream &invFile) {
 void printList(const Inventory* head) {
    cout << "\n--- Printing out all records: ---" << endl << endl; 
 
+   // 20. ptr is constant due to principle of least
+   // priviledge; we are simply reading from the linked
+   // list, not changing it in any way. 
    const Inventory* ptr = head; 
    int i = 0; 
 
@@ -354,6 +374,9 @@ void printList(const Inventory* head) {
       cout << "Retail Price: " << ptr->retail << endl; 
       cout << "Date Added to Inventory: " << ptr->date << endl << endl; 
       ptr = ptr->next; 
+
+      // 21. Increment i++ in order to have 
+      // an updated record number.  
       i++; 
    }
 }
