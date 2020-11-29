@@ -21,11 +21,11 @@ struct Inventory {
    double retail;         // Retail price
    char date[DATE_SIZE];  // Date Added to Inventory
 
-   Inventory* next = nullptr; // Only the printList and buildList
-                              // functions use the next pointer
-                              // So when every Inventory object is
-                              // created, it's next pointer is
-                              // initialized to nullptr
+   Inventory* next;       // Only the printList and buildList
+                          // functions use the next pointer
+                          // So when every Inventory object is
+                          // created, it's next pointer is
+                          // initialized to nullptr
 };
 
 // Function Prototypes
@@ -34,8 +34,13 @@ struct Inventory {
 void addRecord(fstream &);
 void viewRecord(fstream &invFile, const int recordNumber);
 void changeRecord(fstream &invFile); 
+Inventory* buildList(fstream &invFile);
+void printList(const Inventory* head); 
 
 int main() {
+   Inventory* head = nullptr; 
+   Inventory* ptr = nullptr; 
+
    // File stream object
    fstream inventoryFile;
 
@@ -94,7 +99,11 @@ int main() {
      }
    } while (choice != 4);
 
-   // TODO: Implement rest of main here.
+   // call buildList
+   head = buildList(inventoryFile);
+
+   // printlist
+   printList(head); 
 
    return 0;
 }
@@ -302,4 +311,49 @@ void changeRecord(fstream &invFile) {
 
    // close file
    invFile.close(); 
+}
+
+Inventory* buildList(fstream &invFile) {
+   Inventory* temp = nullptr; 
+   Inventory* head = new Inventory; 
+
+   invFile.open("invtry.dat", ios::in | ios::binary); 
+   invFile.read(reinterpret_cast<char *>(head), sizeof(Inventory));
+
+   temp = head; 
+
+   while (!invFile.eof()) {
+      Inventory* new_node = new Inventory; 
+      invFile.read(reinterpret_cast<char *>(new_node), sizeof(Inventory));
+      if (invFile.eof()) {
+         break; 
+      }
+
+      temp->next = new_node; 
+      temp = new_node;  
+   }
+
+   temp->next = nullptr; 
+
+   invFile.close(); 
+
+   return head; 
+}
+
+void printList(const Inventory* head) {
+   cout << "\n--- Printing out all records: ---" << endl << endl; 
+
+   const Inventory* ptr = head; 
+   int i = 0; 
+
+   while (ptr != nullptr) {
+      cout << "Record #" << i << ":" << endl; 
+      cout << "Description: " << ptr->desc << endl; 
+      cout << "Quantity: " << ptr->qty << endl; 
+      cout << "Wholesale Cost: " << ptr->wholeSale << endl; 
+      cout << "Retail Price: " << ptr->retail << endl; 
+      cout << "Date Added to Inventory: " << ptr->date << endl << endl; 
+      ptr = ptr->next; 
+      i++; 
+   }
 }
