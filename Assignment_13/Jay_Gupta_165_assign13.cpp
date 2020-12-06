@@ -21,7 +21,7 @@ struct Inventory {
    double retail;         // Retail price
    char date[DATE_SIZE];  // Date Added to Inventory
 
-   Inventory* next;       // Only the printList and buildList
+   Inventory* next = nullptr;       // Only the printList and buildList
                           // functions use the next pointer
                           // So when every Inventory object is
                           // created, it's next pointer is
@@ -137,6 +137,7 @@ void addRecord(fstream &invFile) {
       exit(EXIT_FAILURE);
    }
 
+   // removes line return 
    cin.get(); // make sure that the keyboard buffer is empty 
               // before prompting the user for the description
 
@@ -320,6 +321,8 @@ Inventory* buildList(fstream &invFile) {
    // dynamically allocate memory to head 
    Inventory* head = new Inventory; 
 
+   Inventory* new_node = new Inventory; 
+
    // open the file 
    invFile.open("invtry.dat", ios::in | ios::binary); 
    // first read will go to head pointer 
@@ -334,9 +337,10 @@ Inventory* buildList(fstream &invFile) {
       // 17. new_node is being dynamically created each 
       // time as the read statement doesn't make a new variable,
       // rather, it changes the variable's value. 
-      Inventory* new_node = new Inventory; 
+      new_node = new Inventory; 
       invFile.read(reinterpret_cast<char *>(new_node), sizeof(Inventory));
       if (invFile.eof()) {
+         // delete new_node; 
          break; 
       }
 
